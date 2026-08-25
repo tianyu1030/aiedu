@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ 主题系统：三套 CSS 变量 ============
+ * 变量命名规范（对应 tailwind 颜色扩展）：
+ *   --bg / --fg / --muted
+ *   --primary / --primary-fg
+ *   --card / --card-fg
+ *   --border / --accent
+ *   额外：--ring --input --radius（表单聚焦等）
+ */
+
+/* 默认（浅色 B2C）：白底蓝主色 */
+:root,
+[data-theme="default"] {
+  --bg: #f6f7fb;
+  --fg: #1f2430;
+  --muted: #6b7280;
+  --primary: #4f6ef7;
+  --primary-fg: #ffffff;
+  --card: #ffffff;
+  --card-fg: #1f2430;
+  --border: #e5e7eb;
+  --accent: #f0f4ff;
+  --input: #e5e7eb;
+  --ring: #4f6ef7;
+  --radius: 0.75rem;
+}
+
+/* 护眼绿：米白背景 + 柔和绿主色 */
+[data-theme="eye"] {
+  --bg: #eef6e6;
+  --fg: #243b1c;
+  --muted: #4a5b43;
+  --primary: #4a9050;
+  --primary-fg: #ffffff;
+  --card: #f8fbf2;
+  --card-fg: #243b1c;
+  --border: #c8dab8;
+  --accent: #e5f1d6;
+  --input: #d1e2c2;
+  --ring: #4a9050;
+  --radius: 0.75rem;
+}
+
+/* 暗色主题：深色背景 + 蓝紫主色 */
+[data-theme="dark"] {
+  --bg: #12141a;
+  --fg: #e6e8ee;
+  --muted: #9ca3af;
+  --primary: #7c93ff;
+  --primary-fg: #12141a;
+  --card: #1c2029;
+  --card-fg: #e6e8ee;
+  --border: #2c313d;
+  --accent: #242a3a;
+  --input: #2c313d;
+  --ring: #7c93ff;
+  --radius: 0.75rem;
+}
+
+/* 兼容旧名，确保已有 class 不被破坏 */
+:root,
+[data-theme="default"],
+[data-theme="eye"],
+[data-theme="dark"] {
+  --primary-foreground: var(--primary-fg);
+  --card-foreground: var(--card-fg);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 主题切换时全局过渡 */
+body,
+[themed] {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* 导航栏窄屏横向滚动 */
+.nav-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.nav-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+/* ============ 无障碍：动效降级 ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
