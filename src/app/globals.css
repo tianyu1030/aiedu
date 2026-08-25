@@ -94,7 +94,7 @@ a {
 
 /* 主题切换时全局过渡 */
 body,
-[themed] {
+[data-themed] {
   transition:
     background-color 0.2s ease,
     color 0.2s ease,

@@ -10,7 +10,7 @@ export default function AppLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-bg text-fg" themed>
+      <div className="min-h-screen bg-bg text-fg" data-themed>
         <Sidebar />
         <NavBar />
         <MainShifter>
