@@ -27,8 +27,9 @@ function useClickOutside<T extends HTMLElement>(onOutside: () => void) {
   const [ref, setRef] = useState<T | null>(null);
   useEffect(() => {
     if (!ref) return;
+    const el = ref;
     function handler(e: MouseEvent) {
-      if (!ref.contains(e.target as Node)) onOutside();
+      if (!el.contains(e.target as Node)) onOutside();
     }
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
