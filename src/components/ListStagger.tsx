@@ -1,6 +1,6 @@
 "use client";
 
-import type { LiHTMLAttributes, ReactNode, UlHTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import { motion, type Variants } from "framer-motion";
 
 /**
@@ -29,7 +29,7 @@ const itemVariants: Variants = {
   },
 };
 
-type ListStaggerProps = UlHTMLAttributes<HTMLUListElement> & {
+type ListStaggerProps = HTMLAttributes<HTMLUListElement> & {
   children: ReactNode;
 };
 
@@ -52,7 +52,7 @@ export default function ListStagger({
   );
 }
 
-type StaggerItemProps = LiHTMLAttributes<HTMLLIElement> & {
+type StaggerItemProps = HTMLAttributes<HTMLLIElement> & {
   children: ReactNode;
 };
 
